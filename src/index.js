@@ -30,13 +30,13 @@ async function serchElement(event) {
     API.fetchCards(API.search)
       .then(data => {
         console.log(data)
-        if (data.total === 0) {
+        if (data.data.total === 0) {
           Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
           );
-        } else if (data.total !== 0) {
-          Notify.success(`Hooray! We found ${data.totalHits} images`);
-        } render(data.hits);
+        } else if (data.data.total !== 0) {
+          Notify.success(`Hooray! We found ${data.data.totalHits} images`);
+        } render(data.data.hits);
       })
       .catch(err => console.log(err));
   
@@ -82,7 +82,7 @@ function render(elements) {
 function loadMore() {
   API.step += 1
   API.fetchCards().then(data => {
-      const cards = data.hits
+      const cards = data.data.hits
         .map(
           ({
             webformatURL,
