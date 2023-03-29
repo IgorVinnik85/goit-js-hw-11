@@ -8,7 +8,7 @@ export class createAPI {
 
   search = null;
   step = 1;
-  count = 5;
+  count = 40;
 
   async fetchCards() {
     try {

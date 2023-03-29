@@ -21,8 +21,37 @@ body {
 
 .gallery {
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  gap: 25px;
   flex-wrap: wrap;
 }
 
+form {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
 
+.load-more {
+  font-size: 20px;
+  margin: 0 auto;
+  display: block;
+  /* padding-top: 5px; */
+  box-shadow: 20px 21px 11px -2px rgba(34, 60, 80, 0.2);
+  background-color: darkgrey;
+  border-radius: 5px;
+}
+
+.submit {
+  font-size: 15px;
+  box-shadow: 20px 21px 11px -2px rgba(34, 60, 80, 0.2);
+  background-color: darkgrey;
+  border-radius: 5px;
+}
+
+.photo-card {
+    box-shadow: 20px 21px 11px -2px rgba(34, 60, 80, 0.2);
+}
