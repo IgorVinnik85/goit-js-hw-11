@@ -3,6 +3,7 @@ import { createAPI } from './fetch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import debounce from 'lodash.debounce';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -10,6 +11,7 @@ const form = document.querySelector('.search-form');
 const input = document.querySelector('.input-value');
 const list = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
+const checkbox = document.querySelector('.checkbox');
 
 const API = new createAPI();
 
@@ -107,3 +109,36 @@ let galleryModal = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+checkbox.addEventListener('click', ckeckBox)
+
+function ckeckBox() {
+  if (checkbox.checked) {
+  btnLoadMore.classList.add('visible')
+  
+   window.addEventListener('scroll', debounce(checkPosition, DEBOUNCE_DELAY));
+   window.addEventListener('resize', checkPosition);
+
+   function checkPosition(e) {
+     const height = document.body.offsetHeight;
+     const screenHeight = window.innerHeight;
+     // console.log(window.scrollY);
+     const scrolled = window.scrollY;
+
+     // Обозначим порог, по приближении к которому
+     // будем вызывать какое-то действие.
+     // В нашем случае — четверть экрана до конца страницы:
+     const threshold = height - screenHeight / 4;
+
+     // Отслеживаем, где находится низ экрана относительно страницы:
+     const position = scrolled + screenHeight;
+
+     if (position >= threshold) {
+       // Если мы пересекли полосу-порог, вызываем нужное действие.
+       loadMore();
+     }
+   }
+}
+}
+
+ 

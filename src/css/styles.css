@@ -55,3 +55,7 @@ form {
 .photo-card {
     box-shadow: 20px 21px 11px -2px rgba(34, 60, 80, 0.2);
 }
+
+.visible {
+  display: none;
+}
